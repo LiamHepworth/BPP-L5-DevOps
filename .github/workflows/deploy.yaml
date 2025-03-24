@@ -23,4 +23,6 @@ jobs:
 
       - name: Trigger Render Deployment
         if: success()
+        environment:
+          name: production
         run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
