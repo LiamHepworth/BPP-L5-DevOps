@@ -1,14 +1,18 @@
-# Use an official OpenJDK base image
-FROM eclipse-temurin:17-jdk-alpine
+# Build the app
+FROM maven:3.9.6-eclipse-temurin-17 AS build
+WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Set working directory inside the container
+# Run the app
+FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
 
-# Copy your built JAR into the container
-COPY target/DevOpsSummative-1.0-SNAPSHOT.jar app.jar
+# Copy the built JAR from the Build stage
+COPY --from=build /app/target/DevOpsSummative-1.0-SNAPSHOT.jar app.jar
 
-# Expose the port, Render will overrdie this with a var
+# Expose the app port (Render uses $PORT env var)
 EXPOSE 8080
 
-# Run the app, passing the dynamic PORT variable from Render
+# Start the app
 CMD ["sh", "-c", "java -jar app.jar --server.port=$PORT"]
