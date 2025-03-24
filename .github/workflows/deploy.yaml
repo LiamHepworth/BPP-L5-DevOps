@@ -19,7 +19,7 @@ jobs:
           java-version: '17'
 
       - name: Build and Run Tests with Maven
-        run: mvn clean verify
+        run: mvn -B clean verify -DtrimStackTrace=false
 
       - name: Trigger Render Deployment
         if: success()
