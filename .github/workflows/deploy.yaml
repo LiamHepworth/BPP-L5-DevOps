@@ -23,7 +23,7 @@ jobs:
         run: mvn -B clean compile
 
       - name: Run Unit Tests
-        run: mvn -B -q test -DtrimStackTrace=false
+        run: mvn -B -ntp test
 
   deploy:
     name: Deploy to Render
