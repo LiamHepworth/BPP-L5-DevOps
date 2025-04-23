@@ -1,0 +1,10 @@
+services:
+- type: web
+  name: BPP-L5-DevOps
+  runtime: docker
+  repo: https://github.com/LiamHepworth/BPP-L5-DevOps
+  plan: free
+  region: frankfurt
+  dockerContext: .
+  dockerfilePath: ./Dockerfile
+version: "1"
