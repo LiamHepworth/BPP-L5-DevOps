@@ -12,7 +12,7 @@ WORKDIR /app
 COPY --from=build /app/target/DevOpsSummative-1.0-SNAPSHOT.jar app.jar
 
 # Expose the app port (Render uses $PORT env var).
-EXPOSE 8084
+EXPOSE 8080
 
 # Start the app.
-CMD ["java", "-jar", "app.jar"]
+CMD ["sh", "-c", "java -jar app.jar --server.port=$PORT"]
