@@ -15,4 +15,4 @@ COPY --from=build /app/target/DevOpsSummative-1.0-SNAPSHOT.jar app.jar
 EXPOSE 8080
 
 # Start the app.
-CMD ["sh", "-c", "java -jar app.jar --server.port=$PORT"]
+CMD sh -c 'java -jar app.jar --server.port=$PORT'
